@@ -4,7 +4,7 @@ from random import randrange
 class Deck:
     def __init__(self):
 
-        # Rather than actual add/remove cards from a list, we will just keep all the cards in and keep track of a
+        # Rather than actually adding/removing cards from a list, we will just keep all the cards in and keep track of a
         # position in the list for how many cards we've drawn. When we shuffle, we will randomize the cards then
         # reset our position to 0
         self.currPos = 0
@@ -23,13 +23,14 @@ class Deck:
         self.currPos = 0
 
         # Our approach here is to pick a random card out of the cards we haven't already picked, swap it to the
-        # front of the deck, and decrease the range of remaining cards. Thus we essentially randomly pick which should
-        # the first card, then randomly pick which should be the second out of the remaining 51, and etc.
+        # front of the deck, and decrease the range of remaining cards. We essentially randomly pick which should
+        # the first card, then randomly pick which should be the second out of the remaining 51, etc.
+
         # placedCards will represent both how many we have placed so far and also the position we should put
         # the newly picked card into. Only need to do this 51 times, since by the time we get to the 52nd card
         # there will only be one left and there is no need to swap it with itself
         for placedCards in range(0, 51):
-            # the number of remaining cards is the total number of cards in a deck - the number of cards we placed, so
+            # the number of remaining cards is (total number of cards in a deck - the number of cards we placed), so
             # that is the range we use to pick a random number. After we get a random number, we need to turn that into
             # an actual index in the array, so we add the number of cards we have placed to get past all of spots at the
             # start corresponding to cards we already selected
@@ -44,8 +45,8 @@ class Deck:
             # Now, put the selected card in the range of the cards we have already selected
             self.cards[placedCards] = oldCard
 
-    # To deal a card, we just need to grab whatever card is at currPos and then return it, then move to next position
-    # for next draw
+    # Deal one card from the deck
+    # RETURNS: The next card in the deck, or NONE if empty
     def dealOneCard(self):
         # If we've dealt all cards, return None
         if self.currPos >= len(self.cards):
