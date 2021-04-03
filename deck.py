@@ -46,7 +46,7 @@ class Deck:
             self.cards[placedCards] = oldCard
 
     # Deal one card from the deck
-    # RETURNS: The next card in the deck, or NONE if empty
+    # RETURNS: The next card in the deck, or None if empty
     def dealOneCard(self):
         # If we've dealt all cards, return None
         if self.currPos >= len(self.cards):
